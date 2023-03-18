@@ -14,7 +14,7 @@ export default function Home() {
           `}
         </style>
       </Head>
-      <div class="p-4 mx-auto max-w-screen-md mt-5">
+      <div class="p-4 mx-auto max-w-screen-md mt-0 md:mt-5">
         <CoffeeHelper />
       </div>
     </>

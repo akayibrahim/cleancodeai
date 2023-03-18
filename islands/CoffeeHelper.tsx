@@ -24,7 +24,7 @@ export default function CoffeeHelper() {
 
   return (
     <div>
-      <h1 class="text-2xl font-bold mb-5">BaristAI</h1>
+      <h1 class="text-2xl font-bold mb-5">☕️ BaristAI</h1>
       <textarea
         className="w-full h-64 p-2 border border-gray-300 rounded"
         value={prompt}

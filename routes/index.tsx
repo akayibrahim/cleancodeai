@@ -5,9 +5,16 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Coffee Helper</title>
+        <title>BaristAI</title>
+        <style>
+          {`
+            body {
+              background-color: #f7fafc;
+            }
+          `}
+        </style>
       </Head>
-      <div class="p-4 mx-auto max-w-screen-md">
+      <div class="p-4 mx-auto max-w-screen-md mt-5">
         <CoffeeHelper />
       </div>
     </>

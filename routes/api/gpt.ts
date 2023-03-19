@@ -15,6 +15,19 @@ const rateLimitMessages = [
   "Our BaristAI is busy crafting a perfect beverage for someone else. Please wait a bit before trying again 🍵",
 ];
 
+const moderationMessages = [
+  "☕️ Coffee-related inquiries only, please!",
+  "No non-coffee questions, please. ☕️",
+  "Only coffee-related questions are allowed. ☕️",
+  "Coffee queries only, thank you! ☕️",
+  "Please limit your questions to coffee-related topics. ☕️",
+  "Keep your inquiries coffee-related, please! ☕️",
+  "This is a coffee-only zone. ☕️",
+  "Non-coffee questions are off-limits. ☕️",
+  "Coffee-related topics only, please! ☕️",
+  "Only questions about coffee are permitted. ☕️",
+];
+
 const SYSTEM_PROMPT = [
   {
     role: "system",
@@ -99,7 +112,9 @@ export const handler = async (req: Request, ctx: HandlerContext) => {
     ) {
       console.error("MODERATION FAILED FOR: ", limitedQuery);
       return new Response(
-        "You are not allowed to ask anything other than coffee related stuff.",
+        moderationMessages[
+          Math.floor(Math.random() * moderationMessages.length)
+        ],
       );
     }
 

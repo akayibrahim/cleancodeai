@@ -94,11 +94,10 @@ export const handler = async (req: Request, ctx: HandlerContext) => {
       10,
     );
 
-    console.log(moderation);
-
     if (
       moderation.choices?.[0].message.content.match(/not only/)
     ) {
+      console.error("MODERATION FAILED FOR: ", limitedQuery);
       return new Response(
         "You are not allowed to ask anything other than coffee related stuff.",
       );

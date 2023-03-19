@@ -22,7 +22,7 @@ export const handler = async (req: Request, ctx: HandlerContext) => {
   const { hostname } = ctx.remoteAddr as Deno.NetAddr;
   console.log("hostname", hostname);
   try {
-    await rateLimiter.consume('hostname', 1);
+    await rateLimiter.consume(hostname, 1);
 
     const query = await req.text();
 

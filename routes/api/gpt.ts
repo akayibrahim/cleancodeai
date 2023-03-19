@@ -55,8 +55,7 @@ const MODERATION_PROMPT = [
   },
   {
     role: "assistant",
-    content:
-      'OK',
+    content: "OK",
   },
 ];
 

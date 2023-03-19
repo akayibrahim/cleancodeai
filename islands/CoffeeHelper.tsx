@@ -30,6 +30,30 @@ export default function CoffeeHelper() {
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [hint, setHint] = useState(promptHints[0]);
+  const [timer, setTimer] = useState(0);
+
+  const savedHistory = localStorage.getItem("history") &&
+    JSON.parse(localStorage.getItem("history") || "[]");
+
+  const [history, setHistory] = useState<
+    { prompt: string; response: string }[]
+  >(savedHistory || []);
+  const [viewHistory, setViewHistory] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("history", JSON.stringify(history));
+  }, [history]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (timer > 0) {
+        setTimer(timer - 1);
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [timer]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -43,6 +67,10 @@ export default function CoffeeHelper() {
   }, [prompt]);
 
   const onClick = useCallback(async () => {
+    if (timer > 0) {
+      return;
+    }
+
     setLoading(true);
     setResult("");
 
@@ -54,14 +82,26 @@ export default function CoffeeHelper() {
     const data = await response.text();
     setResult(data);
     setLoading(false);
-  }, [prompt]);
+    setTimer(30);
+    setViewHistory(false);
+    setHistory([{ prompt, response: data }, ...history].slice(0, 15));
+  }, [prompt, timer]);
+
+  const onViewHistory = useCallback(() => {
+    setViewHistory(!viewHistory);
+  }, [viewHistory]);
+
+  let label = timer > 0 ? `Barista is busy now (${timer})` : "Ask Now";
+  if (loading) {
+    label = "Brewing...";
+  }
 
   return (
     <div>
-      <div class="flex flex-wrap">
+      <div className="flex flex-wrap">
         <h1 className="text-2xl font-bold mb-5 flex items-center text-gray-500">
           BARIST{" "}
-          <span class="rounded-md ml-1 text-white px-1 bg-red-600 w-8 h-8">
+          <span className="rounded-md ml-1 text-white px-1 bg-red-600 w-8 h-8">
             AI
           </span>
         </h1>
@@ -70,29 +110,28 @@ export default function CoffeeHelper() {
         </span>
       </div>
       <textarea
-        className="w-full h-32 p-4 border rounded shadow-lg resize-none"
+        className="w-full h-32 p-4 border rounded-lg shadow-lg resize-none"
         value={prompt}
         onInput={onValueChange}
         placeholder={hint}
         maxLength={promptLength}
       >
       </textarea>
-      <div class="flex justify-end">
-        <span class="text-gray-500 text-sm">
+      <div className="flex justify-end">
+        <span className="text-gray-500 text-sm">
           {prompt.length}/{promptLength}
         </span>
       </div>
-      <div class="flex items-start mt-2 flex-col md:flex-row">
-        <div class="text-sm text-gray-500 pr-5">
-          Write any coffee related text and click "Get Help Now" to get a new
-          coffee. You can ask for ingredients, brewing methods, or anything
-          else.
+      <div className="flex items-start mt-2 flex-col md:flex-row">
+        <div className="text-sm text-gray-500 pr-5">
+          Write any coffee related text and click "Ask Now" to get a new coffee.
+          You can ask for ingredients, brewing methods, or anything else.
         </div>
         <button
           type="button"
           onClick={onClick}
-          className="inline-flex items-center justify-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-red-600 hover:bg-red-500 transition ease-in-out duration-150 whitespace-nowrap mt-4 text-center w-full md:w-auto md:mt-0"
-          disabled={loading || prompt.length === 0}
+          className="inline-flex items-center justify-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-green-400 hover:bg-green-500 transition ease-in-out duration-150 whitespace-nowrap mt-4 text-center w-full md:w-auto md:mt-0"
+          disabled={loading || timer > 0 || prompt.length === 0}
         >
           {loading && (
             <svg
@@ -118,7 +157,7 @@ export default function CoffeeHelper() {
               </path>
             </svg>
           )}
-          {loading ? "Brewing Answer..." : "Get Help Now"}
+          {label}
         </button>
       </div>
 
@@ -132,6 +171,54 @@ export default function CoffeeHelper() {
             {result}
           </p>
         </div>
+      )}
+
+      {history.length > 0 && (
+        <div className="flex justify-center mt-10">
+          <button
+            type="button"
+            className="rounded-full inline-flex items-center justify-center text-xs p-2"
+            onClick={onViewHistory}
+          >
+            <svg
+              className="mr-1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 32 32"
+            >
+              <path
+                fill="currentColor"
+                d="M24.59 16.59L17 24.17V4h-2v20.17l-7.59-7.58L6 18l10 10l10-10l-1.41-1.41z"
+              >
+              </path>
+            </svg>
+            History
+          </button>
+        </div>
+      )}
+      {viewHistory && history.length > 0 && (
+        <>
+          <div className="text-sm text-gray-500 bg-gray-100 mt-2 p-4 rounded-lg shadow-inner">
+            {history.map((item: any, index) => (
+              <div key={index}>
+                <h3
+                  className="mb-2 font-semibold"
+                  onClick={() => !prompt && setPrompt(item.prompt)}
+                >
+                  {item.prompt}
+                </h3>
+                <p className="mb-5">{item.response}</p>
+              </div>
+            ))}
+            <button
+              className="text-xs block w-full text-left"
+              onClick={() => setHistory([])}
+            >
+              Clear History
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

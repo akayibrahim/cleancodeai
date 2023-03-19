@@ -1,5 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
-import CoffeeHelper from "../islands/CoffeeHelper.tsx";
+import CoffeeHelper from "../components/CoffeeHelper.tsx";
 
 export default function Home() {
   return (

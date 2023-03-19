@@ -151,7 +151,6 @@ export const handler = async (req: Request, ctx: HandlerContext) => {
 
     return new Response(generatedMessage);
   } catch (e) {
-    console.error(hostname, e);
     return new Response(
       rateLimitMessages[Math.floor(Math.random() * rateLimitMessages.length)],
     );

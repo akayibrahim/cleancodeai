@@ -35,8 +35,8 @@ export default function CoffeeHelper() {
   const [hint, setHint] = useState(promptHints[0]);
   const [timer, setTimer] = useState(0);
 
-  const savedHistory = window.localStorage.getItem("history") &&
-    JSON.parse(window.localStorage.getItem("history") || "[]");
+  const savedHistory = localStorage.getItem("history") &&
+    JSON.parse(localStorage.getItem("history") || "[]");
 
   const [history, setHistory] = useState<
     { prompt: string; response: string }[]
@@ -44,7 +44,7 @@ export default function CoffeeHelper() {
   const [viewHistory, setViewHistory] = useState(false);
 
   useEffect(() => {
-    window.localStorage.setItem("history", JSON.stringify(history));
+    localStorage.setItem("history", JSON.stringify(history));
   }, [history]);
 
   useEffect(() => {

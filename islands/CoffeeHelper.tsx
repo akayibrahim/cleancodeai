@@ -1,12 +1,42 @@
-import { useCallback, useState } from "preact/hooks";
+import { useCallback, useEffect, useState } from "preact/hooks";
 
-const promptHint = `Help me to find best coffee.`;
+const promptHints = [
+  "Help me to find the best coffee.",
+  "Suggest a coffee based on my preferences.",
+  "Which coffee should I try today?",
+  "Can you recommend a coffee for a beginner?",
+  "What's the most popular coffee choice?",
+  "Find me a coffee with low acidity.",
+  "I need a strong coffee. What do you recommend?",
+  "What's a good coffee for someone who loves chocolate?",
+  "I'm in the mood for a fruity coffee. Any suggestions?",
+  "What coffee pairs well with a croissant?",
+  "Show me some iced coffee options.",
+  "What's a good choice for a cold brew coffee?",
+  "I'd like to try a unique coffee blend. What do you suggest?",
+  "What are some eco-friendly coffee options?",
+  "How do I choose the perfect espresso?",
+  "What's a good coffee for a cozy, rainy day?",
+  "Can you recommend a coffee for a gift?",
+  "I want to try a new coffee bean. What's a good option?",
+  "What are some top-rated coffee roasts?",
+  "How do I pick the right coffee for my French press?",
+];
+
 const promptLength = 280;
 
 export default function CoffeeHelper() {
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const [hint, setHint] = useState(promptHints[0]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHint(promptHints[Math.floor(Math.random() * promptHints.length)]);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   const onValueChange = useCallback((e: any) => {
     setPrompt((e.target as HTMLTextAreaElement).value);
@@ -43,7 +73,7 @@ export default function CoffeeHelper() {
         className="w-full h-32 p-4 border rounded shadow-lg resize-none"
         value={prompt}
         onInput={onValueChange}
-        placeholder={promptHint}
+        placeholder={hint}
         maxLength={promptLength}
       >
       </textarea>

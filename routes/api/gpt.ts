@@ -47,7 +47,7 @@ export const handler = async (req: Request, ctx: HandlerContext) => {
       return new Response(json.error.message);
     }
     const generatedMessage = json.choices?.[0].message.content
-    console.info(hostname, generatedMessage);
+    console.info(`[${hostname}] ${query} -> ${generatedMessage}`);
 
     return new Response(generatedMessage);
   } catch (e) {

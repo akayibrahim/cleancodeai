@@ -70,6 +70,8 @@ export default function CoffeeHelper() {
   }, [prompt]);
 
   const onClick = useCallback(async () => {
+    console.log(timer);
+
     if (timer > 0) {
       return;
     }

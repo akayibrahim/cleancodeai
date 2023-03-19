@@ -31,5 +31,9 @@ export const handler = async (req: Request, _ctx: HandlerContext) => {
   });
 
   const json = await response.json();
+  console.log(json);
+  if (json.error) {
+    return new Response(json.error.message);
+  }
   return new Response(json.choices?.[0].message.content);
 };

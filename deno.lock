@@ -105,6 +105,8 @@
     "https://deno.land/x/ts_morph@16.0.0/mod.ts": "adba9b82f24865d15d2c78ef6074b9a7457011719056c9928c800f130a617c93",
     "https://deno.land/x/ts_morph@16.0.0/ts_morph.d.ts": "38668b0e3780282a56a805425494490b0045d1928bd040c47a94095749dab8c3",
     "https://deno.land/x/ts_morph@16.0.0/ts_morph.js": "9fc0f3d6a3997c2df023fabc4e529d2117d214ffd4fd04247ca2f56c4e9cd470",
+    "https://deno.land/x/virtualstorage@0.1.0/mod.ts": "9449c2f86fab7d09fd7b76446c7852515bbe512cca925a93793e0361d1e266d4",
+    "https://deno.land/x/virtualstorage@0.1.0/virtualStorage.ts": "602965ab9985f0e330587db8b60c2639611622cfd608d1964ade58ed746db09d",
     "https://dev.jspm.io/npm:@jspm/core@2.0.1/nodelibs/process": "1d9259731556e49ecd4ce8180667577a1bdc68844dc89a5a1e71d34cad4a455d",
     "https://dev.jspm.io/npm:@jspm/core@2/nodelibs/process": "2b4c3a7c167d15d326b5e420b8a9f9c6ab7e1fedcfd1910b9b5a25ed5bb43579",
     "https://dev.jspm.io/npm:rate-limiter-flexible@2.4.1!cjs": "6d0703dd972eda87ff2073201beca57057734dfaafe236164910cbe0cd077050",

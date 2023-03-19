@@ -1,3 +1,6 @@
+import { installGlobals } from "https://deno.land/x/virtualstorage@0.1.0/mod.ts";
+installGlobals();
+
 import { useCallback, useEffect, useState } from "preact/hooks";
 
 const promptHints = [

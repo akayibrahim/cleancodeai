@@ -20,7 +20,6 @@ const rateLimiter = new RateLimiterFlexible.default.RateLimiterMemory({
 
 export const handler = async (req: Request, ctx: HandlerContext) => {
   const { hostname } = ctx.remoteAddr as Deno.NetAddr;
-  console.log("hostname", hostname);
   try {
     await rateLimiter.consume(hostname, 1);
 
@@ -43,13 +42,16 @@ export const handler = async (req: Request, ctx: HandlerContext) => {
     });
 
     const json = await response.json();
-    console.log(json);
     if (json.error) {
+      console.error(hostname, json.error);
       return new Response(json.error.message);
     }
-    return new Response(json.choices?.[0].message.content);
+    const generatedMessage = json.choices?.[0].message.content
+    console.info(hostname, generatedMessage);
+
+    return new Response(generatedMessage);
   } catch (e) {
-    console.log(e);
+    console.error(hostname, e);
     return new Response("BaristAI is busy with another customer right now. Please try again later.");
   }
 };

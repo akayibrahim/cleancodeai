@@ -18,7 +18,7 @@ export default function CoffeeHelper() {
 
     const response = await fetch("/api/gpt", {
       method: "POST",
-      body: prompt.substring(0, 280),
+      body: prompt.substring(0, promptLength),
     });
 
     const data = await response.text();

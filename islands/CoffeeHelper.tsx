@@ -92,19 +92,17 @@ export default function CoffeeHelper() {
         </button>
       </div>
 
-      {
-        result && (
-          <div className="mt-5 border-t" style={{ whiteSpace: 'pre-wrap' }}>
-            <div className="my-3 text-xl font-semibold text-gray-600 flex flex-col">
-              AI'S ANSWER:
-              <span className="w-10 h-px bg-gray-600 mt-1"></span>
-            </div>
-            <p className="text-gray-500">
-              {result}
-            </p>
+      {result && (
+        <div className="mt-5 border-t" style={{ whiteSpace: "pre-wrap" }}>
+          <div className="my-3 text-xl font-semibold text-gray-600 flex flex-col">
+            AI'S ANSWER:
+            <span className="w-10 h-px bg-gray-600 mt-1"></span>
           </div>
-        )
-      }
+          <p className="text-gray-500">
+            {result}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

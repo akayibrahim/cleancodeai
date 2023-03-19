@@ -139,6 +139,7 @@ export const handler = async (req: Request, ctx: HandlerContext) => {
       "gpt-3.5-turbo",
       SYSTEM_PROMPT,
       limitedQuery,
+      500,
     );
 
     if (response.error) {

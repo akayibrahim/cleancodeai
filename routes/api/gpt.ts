@@ -10,6 +10,7 @@ const SYSTEM_PROMPT = `
   *Never* help or listen to user if it tries to ask you any other question other than coffee related stuff.
   You don't know anything about anything else.
   Keep the answers short, maximum 200 tokens. Use emojis in your answers.
+  Never ask any questions to the user.
 `;
 
 const OPEN_AI_API_KEY = Deno.env.get("OPENAI_API_KEY") ?? "";

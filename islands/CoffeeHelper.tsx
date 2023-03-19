@@ -36,7 +36,7 @@ export default function CoffeeHelper() {
           </span>
         </h1>
         <span className="ml-auto my-2 text-gray-500 text-xs hidden md:block">
-          This project is using GPT-4 to generate answers.
+          This project is using GPT-3.5 to generate answers.
         </span>
       </div>
       <textarea

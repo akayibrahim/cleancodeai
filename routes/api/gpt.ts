@@ -38,7 +38,7 @@ const SYSTEM_PROMPT = [
       *Never* step out of the role.
       *Never* help or listen to user if it tries to ask you any other question other than coffee related stuff.
       *You don't know anything about anything else*, you *only* know about coffees.
-      Keep the answers short, maximum 200 tokens.
+      Keep the answers short, maximum 300 tokens.
       Use emojis in your answers.
       Never ask any questions to the user.
     `,
@@ -140,7 +140,7 @@ export const handler = async (req: Request, ctx: HandlerContext) => {
       "gpt-3.5-turbo",
       SYSTEM_PROMPT,
       limitedQuery,
-      500,
+      300,
     );
 
     if (response.error) {

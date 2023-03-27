@@ -7,7 +7,7 @@ const promptHints = [
   "Help me to clean my code.",
 ];
 
-const promptLength = 280;
+const promptLength = 1000;
 
 export default function CleanCodeHelper() {
   const [prompt, setPrompt] = useState("");
@@ -85,9 +85,9 @@ export default function CleanCodeHelper() {
   return (
     <div>
       <div className="flex flex-wrap">
-        <h1 className="text-2xl font-bold mb-5 flex items-center text-gray-500">
+        <h1 className="text-2xl font-bold mb-5 flex items-center text-black-500">
           CleanCode{" "}
-          <span className="rounded-md ml-1 text-white px-1 bg-red-600 w-8 h-8">
+          <span className="rounded-md ml-1 text-white px-1 bg-blue-600 w-8 h-8">
             AI
           </span>
         </h1>
@@ -96,7 +96,7 @@ export default function CleanCodeHelper() {
         </span>
       </div>
       <textarea
-        className="w-full h-32 p-4 border rounded-lg shadow-lg resize-none"
+        className="w-full h-64 p-4 border rounded-lg shadow-lg resize-none"
         value={prompt}
         onInput={onValueChange}
         placeholder={hint}

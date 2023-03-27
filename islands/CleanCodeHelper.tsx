@@ -4,7 +4,7 @@ installGlobals();
 import { useCallback, useEffect, useState } from "preact/hooks";
 
 const promptHints = [
-  "Help me to clean my code.",
+  "Let me clean your code",
 ];
 
 const promptLength = 1000;
@@ -110,6 +110,7 @@ export default function CleanCodeHelper() {
       </div>
       <div className="flex items-start mt-2 flex-col md:flex-row">
         <div className="text-sm text-gray-500 pr-5">
+          Clean Code AI is an AI-powered assistant trained on the principles of clean code as outlined in Robert C. Martin's book Clean Code.
           Write any software code related text and click "Clean Now" to get a better version of code.
         </div>
         <button

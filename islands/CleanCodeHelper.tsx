@@ -4,31 +4,12 @@ installGlobals();
 import { useCallback, useEffect, useState } from "preact/hooks";
 
 const promptHints = [
-  "Help me to find the best coffee.",
-  "Suggest a coffee based on my preferences.",
-  "Which coffee should I try today?",
-  "Can you recommend a coffee for a beginner?",
-  "What's the most popular coffee choice?",
-  "Find me a coffee with low acidity.",
-  "I need a strong coffee. What do you recommend?",
-  "What's a good coffee for someone who loves chocolate?",
-  "I'm in the mood for a fruity coffee. Any suggestions?",
-  "What coffee pairs well with a croissant?",
-  "Show me some iced coffee options.",
-  "What's a good choice for a cold brew coffee?",
-  "I'd like to try a unique coffee blend. What do you suggest?",
-  "What are some eco-friendly coffee options?",
-  "How do I choose the perfect espresso?",
-  "What's a good coffee for a cozy, rainy day?",
-  "Can you recommend a coffee for a gift?",
-  "I want to try a new coffee bean. What's a good option?",
-  "What are some top-rated coffee roasts?",
-  "How do I pick the right coffee for my French press?",
+  "Help me to clean my code.",
 ];
 
 const promptLength = 280;
 
-export default function CoffeeHelper() {
+export default function CleanCodeHelper() {
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
@@ -96,16 +77,16 @@ export default function CoffeeHelper() {
     setViewHistory(!viewHistory);
   }, [viewHistory]);
 
-  let label = timer > 0 ? `Barista is busy now (${timer})` : "Ask Now";
+  let label = timer > 0 ? `CleanCodeAI is busy now (${timer})` : "Clean Now";
   if (loading) {
-    label = "Brewing...";
+    label = "Cleaning...";
   }
 
   return (
     <div>
       <div className="flex flex-wrap">
         <h1 className="text-2xl font-bold mb-5 flex items-center text-gray-500">
-          BARIST{" "}
+          CleanCode{" "}
           <span className="rounded-md ml-1 text-white px-1 bg-red-600 w-8 h-8">
             AI
           </span>
@@ -129,8 +110,7 @@ export default function CoffeeHelper() {
       </div>
       <div className="flex items-start mt-2 flex-col md:flex-row">
         <div className="text-sm text-gray-500 pr-5">
-          Write any coffee related text and click "Ask Now" to get a new coffee.
-          You can ask for ingredients, brewing methods, or anything else.
+          Write any software code related text and click "Clean Now" to get a better version of code.
         </div>
         <button
           type="button"

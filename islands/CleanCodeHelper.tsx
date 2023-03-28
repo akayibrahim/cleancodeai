@@ -88,7 +88,7 @@ export default function CleanCodeHelper() {
         <h1 className="text-2xl font-bold mb-5 flex items-center text-black-500">
           CleanCode{" "}
           <span className="rounded-md ml-1 text-white px-1 bg-blue-600 w-8 h-8">
-            AI
+            <AI>
           </span>
         </h1>
         <span className="ml-auto my-2 text-gray-500 text-xs hidden md:block">

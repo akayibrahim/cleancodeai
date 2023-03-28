@@ -31,7 +31,7 @@ const SYSTEM_PROMPT = [
       Output should be like below. If there ise no change, answer as already clean.
       Output:
       1. Clean Code
-        "Cleaned Codes"
+        Refactored Code
       2. Changes
         a. Change 1
         b. Change 2

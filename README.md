@@ -1,6 +1,8 @@
 # Clean Code AI
 
 https://cleancodeai.deno.dev
+<img width="889" alt="image" src="https://github.com/user-attachments/assets/cebb786d-af36-43f4-8b78-e4550eec6028">
+
 
 ### Description
 
